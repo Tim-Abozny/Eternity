@@ -6,7 +6,7 @@ namespace Eternity.DTO.DTOs
     public class WorkDTO
     {
         [Display(Name = "Фото работы")]
-        [Required(ErrorMessage = "")]
+        [Required(ErrorMessage = "Ошибка: картинка не загружена")]
         public IFormFile Image { get; set; }
     }
 }

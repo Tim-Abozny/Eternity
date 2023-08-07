@@ -19,5 +19,18 @@ namespace Eternity.Website.Controllers
             var myWorks = await _workService.ShowWorks();
             return View(myWorks);
         }
+        public IActionResult Editing()
+        {
+            return View();
+        }
+        public async Task AddWork(WorkDTO work)
+        {
+            if (ModelState.IsValid)
+            {
+                await _workService.AddWork(work);
+                _logger.LogInformation("Redirecting to Index method");
+            }
+            RedirectToAction("Index", "Works");
+        }
     }
 }

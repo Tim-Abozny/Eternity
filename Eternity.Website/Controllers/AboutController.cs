@@ -12,5 +12,9 @@ namespace Eternity.Website.Controllers
             _logger = logger;
             _aboutService = aboutService;
         }
+        public ActionResult Index() 
+        {
+            return View();
+        }
     }
 }

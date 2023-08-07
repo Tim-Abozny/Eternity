@@ -30,7 +30,7 @@ namespace Eternity.DataProvider.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Abouts");
+                    b.ToTable("Abouts", (string)null);
                 });
 
             modelBuilder.Entity("Eternity.DataProvider.Models.Key", b =>
@@ -45,7 +45,7 @@ namespace Eternity.DataProvider.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Keys");
+                    b.ToTable("Keys", (string)null);
                 });
 
             modelBuilder.Entity("Eternity.DataProvider.Models.Price", b =>
@@ -64,7 +64,7 @@ namespace Eternity.DataProvider.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Prices");
+                    b.ToTable("Prices", (string)null);
                 });
 
             modelBuilder.Entity("Eternity.DataProvider.Models.Service", b =>
@@ -83,7 +83,7 @@ namespace Eternity.DataProvider.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Services");
+                    b.ToTable("Services", (string)null);
                 });
 
             modelBuilder.Entity("Eternity.DataProvider.Models.Work", b =>
@@ -98,7 +98,7 @@ namespace Eternity.DataProvider.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Works");
+                    b.ToTable("Works", (string)null);
                 });
 #pragma warning restore 612, 618
         }

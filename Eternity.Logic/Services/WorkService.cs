@@ -20,7 +20,7 @@ namespace Eternity.Logic.Services
         {
             _logger.LogInformation("AddWork method called");
             _logger.LogInformation("Creating new work...");
-            var lastWork = await _unitOfWork.WorkRepository.GetAll().LastAsync();
+            var lastWork = await _unitOfWork.WorkRepository.GetAll().OrderBy(x => x.Id).LastOrDefaultAsync();
             MemoryStream target = new MemoryStream();
             work.Image.CopyTo(target);
             Work dbWork = new Work();

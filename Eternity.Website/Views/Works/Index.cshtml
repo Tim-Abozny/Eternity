@@ -1,12 +1,22 @@
 ﻿@model List<byte[]>
+
 @{
+    Layout = "_Layout";
     ViewData["Title"] = "Наши работы";
 }
-@foreach (var work in Model)
-{
-    <div class="work-container">
-        <p>
-            <img class="image-container" src="@string.Format("data:image/png;base64, {0}", Convert.ToBase64String(work))"/>
-        </p>
-    </div>
+
+<a class="navbar-brand" asp-area="" asp-controller="Works" asp-action="Editing">Редактирование</a>
+
+@{
+    int counter = 0;
+    @foreach (var work in Model)
+    {
+        <div class="work-container">
+            <p>
+                <i>@counter</i>
+                <img class="image-container" src="@string.Format("data:image/png;base64, {0}", Convert.ToBase64String(work))"/>
+            </p>
+        </div>
+        counter++;
+    }
 }

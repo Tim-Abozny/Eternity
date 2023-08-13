@@ -13,15 +13,16 @@
     <header class="header">
         <nav class="navbar navbar-expand-sm navbar-toggleable-sm">
             <div class="container-fluid">
-                <!--Main button-->
-                <a  class="user-avatar" asp-controller="Home" asp-action="Index"><img class="user-image" src="img/logo.png"/></a>
-                <!--paste here img-->
-                <!--end main button-->
                 <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
                     <ul class="navbar-nav flex-grow-1">
+                    <!--Main button-->
+                        <li class="user-image nav-item">
+                            <a class="nav-link text-white" asp-controller="Home" asp-action="Index"><img class="user-image" src="img/logo.png"/></a>
+                        </li>
+                    <!--end main button-->
                         <!--other buttons in header-->
                         <li class="nav-item">
-                            <a class="nav-link text-white" asp-controller="Works" asp-action="Index">Наши работы</a>
+                            <a class="nav-link text-white" asp-controller="Works" asp-action="Index">Работы</a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link text-white" asp-controller="Services" asp-action="Index">Цены</a>
@@ -42,13 +43,13 @@
         </nav>
     </header>
 
-    <div class="container">
+    <div class="content">
         <main role="main" class="pb-3">
             @RenderBody()
         </main>
     </div>
 
-    <footer class="border-top footer text-muted">
+    <footer class="footer text-muted">
             <div>
                 <nav class="navbar-expand-sm">
                     <ul class="navbar-nav flex-grow-1 center-screen">

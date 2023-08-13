@@ -6,7 +6,12 @@
 }
 
 <a class="navbar-brand" asp-area="" asp-controller="Works" asp-action="Editing">Редактирование</a>
-
+ <div class='light x4'></div>
+ <div class='light x5'></div>
+ <div class='light x6'></div>
+ <div class='light x7'></div>
+ <div class='light x8'></div>
+ <div class='light x9'></div>
 @{
     int counter = 0;
     @foreach (var work in Model)
@@ -17,6 +22,7 @@
                 <img class="image-container" src="@string.Format("data:image/png;base64, {0}", Convert.ToBase64String(work))"/>
             </p>
         </div>
+    
         counter++;
     }
 }

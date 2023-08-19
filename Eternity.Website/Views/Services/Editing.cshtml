@@ -1,0 +1,47 @@
+﻿@using Eternity.DTO.DTOs;
+@model ServiceDTO
+
+@{
+    Layout = "_Layout";
+    ViewBag.Title = "Редактирование";
+}
+
+<div class="container py-5">
+    <div class="row">
+        <div class="col-md-12">
+            <div class="row justify-content-center">
+                <div class="col-md-10">
+                    <span class="anchor"></span>
+                    <div class="form-control">
+                        <div class="card-header">
+                            <h3 class="text-center">Добавление услуги</h3>
+                        </div>
+                        <div class="card-body">
+                            <form asp-controller="Services" asp-action="AddService" method="post" enctype="multipart/form-data">
+                                <div asp-validation-summary="All" style="font-size:23px; font-family:Aleo" class="text-danger text-center"></div>
+                                    <label asp-for="Name">Name</label>
+                                <div class="form-group">
+                                    <input asp-for="Name" class="form-control" placeholder="Название" type="text">
+                                </div>
+                                    <label asp-for="ServicePhoto">Photo</label>
+                                <div class="form-group">
+                                    <input asp-for="ServicePhoto" aria-required="true" type="file" accept="image/*" />
+                                </div>
+                                <div>
+                                    <button class="btn btn-success" type="submit">Добавить</button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+@*@foreach (var work in Model)
+{
+    <img class="image-container" src="@string.Format("data:image/png;base64, {0}", Convert.ToBase64String(work))"/>
+    <button>Удалить</button>
+}
+*@

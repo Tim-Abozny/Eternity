@@ -1,4 +1,5 @@
-﻿using Eternity.Logic.Interfaces;
+﻿using Eternity.DTO.DTOs;
+using Eternity.Logic.Interfaces;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Eternity.Website.Controllers
@@ -12,9 +13,25 @@ namespace Eternity.Website.Controllers
             _logger = logger;
             _service = service;
         }
-        public ActionResult Index()
+        public async Task<ActionResult> Index()
+        {
+            _logger.LogInformation("WorksController called Index method");
+            var myServices = await _service.ShowServices();
+            return View(myServices);
+        }
+        public IActionResult Editing()
         {
             return View();
+        }
+        [HttpPost]
+        public async Task<IActionResult> AddService(ServiceDTO service)
+        {
+            if (ModelState.IsValid)
+            {
+                await _service.AddService(service);
+                _logger.LogInformation("Redirecting to Index method...");
+            }
+            return await Task.Run<IActionResult>(() => RedirectToAction("Index", "Services"));
         }
     }
 }

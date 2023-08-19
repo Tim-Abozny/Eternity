@@ -2,6 +2,7 @@
 using Eternity.DataProvider.Models;
 using Eternity.DTO.DTOs;
 using Eternity.Logic.Interfaces;
+using Microsoft.AspNetCore.Http;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Logging;
 
@@ -21,7 +22,8 @@ namespace Eternity.Logic.Services
         {
             _logger.LogInformation("Called AddService method");
             Service dbService = new Service();
-            var tempEntity = await _unitOfWork.ServiceRepository.GetAll().LastAsync();
+            var tempEntity = await _unitOfWork.ServiceRepository.GetAll().OrderBy(x => x.Id).LastOrDefaultAsync();
+
             if (tempEntity == null)
             {
                 dbService.Id = 0;
@@ -30,9 +32,11 @@ namespace Eternity.Logic.Services
             {
                 dbService.Id = tempEntity.Id + 1;
             }
-            
             dbService.Name = service.Name;
-            dbService.ServicePhoto = service.ServicePhoto;
+            MemoryStream target = new MemoryStream();
+            service.ServicePhoto.CopyTo(target);
+            dbService.ServicePhoto = target.ToArray();
+
             _unitOfWork.ServiceRepository.Create(dbService);
             _unitOfWork.Commit();
             _logger.LogInformation("Service added successfully");
@@ -47,18 +51,10 @@ namespace Eternity.Logic.Services
             _logger.LogInformation($"Service with id = {id} deleted from db");
         }
 
-        public async Task<ServiceDTO> ShowServices()
+        public async Task<List<Service>> ShowServices()
         {
-            List<ServiceDTO> services = new List<ServiceDTO>();
             var tempList = await _unitOfWork.ServiceRepository.GetAll().ToListAsync();
-            ServiceDTO serviceDTO= new ServiceDTO();
-            foreach ( var temp in tempList ) 
-            {
-                serviceDTO.Name = temp.Name;
-                serviceDTO.ServicePhoto = temp.ServicePhoto;
-                services.Add(serviceDTO);
-            }
-            return serviceDTO;
+            return tempList;
         }
     }
 }

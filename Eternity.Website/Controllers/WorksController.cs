@@ -23,14 +23,15 @@ namespace Eternity.Website.Controllers
         {
             return View();
         }
-        public async Task AddWork(WorkDTO work)
+        [HttpPost]
+        public async Task<IActionResult> AddWork(WorkDTO work)
         {
             if (ModelState.IsValid)
             {
                 await _workService.AddWork(work);
-                _logger.LogInformation("Redirecting to Index method");
-            }
-            RedirectToAction("Index", "Works");
+                _logger.LogInformation("Redirecting to Index method...");
+            }   
+            return await Task.Run<IActionResult>(() => RedirectToAction("Index", "Works"));
         }
     }
 }

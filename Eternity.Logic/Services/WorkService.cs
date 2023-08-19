@@ -29,14 +29,12 @@ namespace Eternity.Logic.Services
             {
 
                 dbWork.Id = lastWork.Id + 1;
-                dbWork.WorkImage = target.ToArray();
-                
             }
             else
             {
                 dbWork.Id = 0;
-                dbWork.WorkImage = target.ToArray();
             }
+            dbWork.WorkImage = target.ToArray();
             _logger.LogInformation("New work created successfully");
             _unitOfWork.WorkRepository.Create(dbWork);
             _unitOfWork.Commit();

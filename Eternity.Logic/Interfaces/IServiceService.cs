@@ -1,4 +1,5 @@
-﻿using Eternity.DTO.DTOs;
+﻿using Eternity.DataProvider.Models;
+using Eternity.DTO.DTOs;
 
 namespace Eternity.Logic.Interfaces
 {
@@ -6,6 +7,6 @@ namespace Eternity.Logic.Interfaces
     {
         Task DeleteService(int id);
         Task AddService(ServiceDTO service);
-        Task<ServiceDTO> ShowServices();
+        Task<List<Service>> ShowServices();
     }
 }

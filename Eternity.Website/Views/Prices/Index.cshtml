@@ -1,5 +1,23 @@
-﻿@*
-    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
-*@
+﻿@using Eternity.DataProvider.Models;
+@model List<Price>
+
 @{
+    Layout = "_Layout";
+    ViewData["Title"] = "Услуги";
 }
+<div class="own-bg background"></div>
+<div class="bg midground"></div>
+<div class="bg foreground">
+    @{
+        @foreach (var price in Model)
+        {
+            <div class="work-container">
+                <p>
+                    <i>@price.Id</i>
+                    <i>@price.Title</i>
+                    <i>@price.Description</i>
+                </p>
+            </div>
+        }
+    }
+</div>

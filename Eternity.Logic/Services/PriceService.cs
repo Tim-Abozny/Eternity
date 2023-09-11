@@ -21,7 +21,7 @@ namespace Eternity.Logic.Services
         {
             _logger.LogInformation("Called CreatePrice method");
             Price dbPrice = new Price();
-            var tempEntity = await _unitOfWork.PriceRepository.GetAll().LastAsync();
+            var tempEntity = await _unitOfWork.PriceRepository.GetAll().OrderBy(x => x.Id).LastOrDefaultAsync();
             dbPrice.Id = tempEntity.Id + 1;
             dbPrice.Title = price.Title;
             dbPrice.Description = price.Description;
@@ -39,10 +39,12 @@ namespace Eternity.Logic.Services
             _logger.LogInformation($"Price with id = {id} deleted");
         }
 
-        public async Task EditPrice(PriceDTO price)
+        public async Task EditPrice(PriceDTO price, int id)
         {
             _logger.LogInformation("Called EditPrice method");
-            var tempEntity = await _unitOfWork.PriceRepository.GetAll().Where(x => x.Title == price.Title).SingleAsync();
+            var tempEntity = await _unitOfWork.PriceRepository.GetAll().Where(x => x.Id == id).SingleAsync();
+            tempEntity.Title = price.Title;
+            tempEntity.Description = price.Description;
             _unitOfWork.PriceRepository.Update(tempEntity);
             _unitOfWork.Commit();
             _logger.LogInformation($"Price with id = {tempEntity.Id} successfully edited");

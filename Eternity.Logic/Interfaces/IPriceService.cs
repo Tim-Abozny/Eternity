@@ -7,7 +7,7 @@ namespace Eternity.Logic.Interfaces
     {
         Task CreatePrice(PriceDTO price);
         Task<List<PriceDTO>> GetPrices();
-        Task EditPrice(PriceDTO price);
+        Task EditPrice(PriceDTO price, int id);
         Task DeletePrice(int id);
     }
 }

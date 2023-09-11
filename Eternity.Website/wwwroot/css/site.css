@@ -88,7 +88,7 @@ main.pb-3 {
 }
 
 .main-div {
-    background: url('../img/own-background.png');
+    background: linear-gradient(#000000, #0b0b34, #000000);
 }
 .bg {
     /*position: absolute;*/
@@ -110,12 +110,12 @@ main.pb-3 {
 
 .midground {
     background: url('../img/midground.png');
-    animation-duration: 800s;
+    animation-duration: 400s;
 }
 
 .foreground {
     background: url('../img/foreground.png');
-    animation-duration: 600s;
+    animation-duration: 200s;
 }
 
 @keyframes spaceJam {

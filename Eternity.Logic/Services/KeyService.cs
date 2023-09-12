@@ -31,14 +31,12 @@ namespace Eternity.Logic.Services
             if (id != null)
             {
                 generatedKey.Id = id.Id + 1;
-                generatedKey.Text = randomPassword;
             }
             else
             {
                 generatedKey.Id = 0;
-                generatedKey.Text = randomPassword;
             }
-
+            generatedKey.Text = randomPassword;
             _unitOfWork.KeyRepository.Create(generatedKey);
             _unitOfWork.Commit();
             _logger.LogInformation("Database wrote a new key");

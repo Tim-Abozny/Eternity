@@ -15,7 +15,7 @@ namespace Eternity.Website.Controllers
         }
         public async Task<ActionResult> Index()
         {
-            _logger.LogInformation("WorksController called Index method");
+            _logger.LogInformation("ServicesController CALLED Index method");
             var myServices = await _service.ShowServices();
             return View(myServices);
         }
@@ -26,6 +26,7 @@ namespace Eternity.Website.Controllers
         [HttpPost]
         public async Task<IActionResult> AddService(ServiceDTO service)
         {
+            _logger.LogInformation("ServicesController CALLED AddService method");
             if (ModelState.IsValid)
             {
                 await _service.AddService(service);

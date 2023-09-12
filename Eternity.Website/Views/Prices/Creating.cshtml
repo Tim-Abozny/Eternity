@@ -1,0 +1,47 @@
+﻿@using Eternity.DTO.DTOs;
+@model PriceDTO
+
+@{
+    Layout = "_Layout";
+    ViewBag.Title = "СОЗДАНИЕ ЦЕНЫ";
+}
+
+<div class="container py-5">
+    <div class="row">
+        <div class="col-md-12">
+            <div class="row justify-content-center">
+                <div class="col-md-10">
+                    <span class="anchor"></span>
+                    <div class="form-control">
+                        <div class="card-header">
+                            <h3 class="text-center">Добавление цены</h3>
+                        </div>
+                        <div class="card-body">
+                            <form asp-controller="Prices" asp-action="AddPrice" method="post">
+                                <div asp-validation-summary="All" style="font-size:23px; font-family:Aleo" class="text-danger text-center"></div>
+                                    <label asp-for="Title">Title</label>
+                                <div class="form-group">
+                                    <input asp-for="Title" class="form-control" placeholder="Заголовок" type="text">
+                                </div>
+                                    <label asp-for="Description">Description</label>
+                                <div class="form-group">
+                                    <input asp-for="Description" class="form-control" placeholder="Описание" type="text">
+                                </div>
+                                <div>
+                                    <button class="btn btn-success" type="submit">Добавить</button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+@*@foreach (var work in Model)
+{
+    <img class="image-container" src="@string.Format("data:image/png;base64, {0}", Convert.ToBase64String(work))"/>
+    <button>Удалить</button>
+}
+*@

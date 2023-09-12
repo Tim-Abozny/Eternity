@@ -6,7 +6,7 @@ namespace Eternity.Logic.Interfaces
     public interface IPriceService
     {
         Task CreatePrice(PriceDTO price);
-        Task<List<PriceDTO>> GetPrices();
+        Task<List<Price>> GetPrices();
         Task EditPrice(PriceDTO price, int id);
         Task DeletePrice(int id);
     }

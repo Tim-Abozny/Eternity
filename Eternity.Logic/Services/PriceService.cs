@@ -22,7 +22,15 @@ namespace Eternity.Logic.Services
             _logger.LogInformation("Called CreatePrice method");
             Price dbPrice = new Price();
             var tempEntity = await _unitOfWork.PriceRepository.GetAll().OrderBy(x => x.Id).LastOrDefaultAsync();
-            dbPrice.Id = tempEntity.Id + 1;
+
+            if (tempEntity == null)
+            {
+                dbPrice.Id = 0;
+            }
+            else
+            {
+                dbPrice.Id = tempEntity.Id + 1;
+            }
             dbPrice.Title = price.Title;
             dbPrice.Description = price.Description;
             _unitOfWork.PriceRepository.Create(dbPrice);
@@ -50,20 +58,21 @@ namespace Eternity.Logic.Services
             _logger.LogInformation($"Price with id = {tempEntity.Id} successfully edited");
         }
 
-        public async Task<List<PriceDTO>> GetPrices()
+        public async Task<List<Price>> GetPrices()
         {
             _logger.LogInformation("Called GetPrices method");
             var entityList = await _unitOfWork.PriceRepository.GetAll().ToListAsync();
-            List<PriceDTO> listToReturn = new List<PriceDTO>();
-            PriceDTO tempDTO = new();
+            List<Price> listToReturn = new List<Price>();
             foreach (var entity in entityList)
             {
-                tempDTO.Title = entity.Title;
-                tempDTO.Description = entity.Description;
-                listToReturn.Add(tempDTO);
+                Price temp = new();
+                temp.Id = entity.Id;
+                temp.Title = entity.Title;
+                temp.Description = entity.Description;
+                listToReturn.Add(temp);
             }
             _logger.LogInformation("Returning data...");
-            return listToReturn;
+            return entityList;
         }
     }
 }

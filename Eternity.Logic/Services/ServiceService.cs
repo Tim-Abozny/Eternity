@@ -20,7 +20,7 @@ namespace Eternity.Logic.Services
 
         public async Task AddService(ServiceDTO service)
         {
-            _logger.LogInformation("Called AddService method");
+            _logger.LogInformation("CALLED AddService method");
             Service dbService = new Service();
             var tempEntity = await _unitOfWork.ServiceRepository.GetAll().OrderBy(x => x.Id).LastOrDefaultAsync();
 
@@ -39,16 +39,16 @@ namespace Eternity.Logic.Services
 
             _unitOfWork.ServiceRepository.Create(dbService);
             _unitOfWork.Commit();
-            _logger.LogInformation("Service added successfully");
+            _logger.LogInformation("Service ADDED successfully");
         }
 
         public async Task DeleteService(int id)
         {
-            _logger.LogInformation("Called DeleteService method");
+            _logger.LogInformation("CALLED DeleteService method");
             var tempEntity = await _unitOfWork.ServiceRepository.GetAll().Where(x => x.Id == id).SingleAsync();
             _unitOfWork.ServiceRepository.Delete(tempEntity);
             _unitOfWork.Commit();
-            _logger.LogInformation($"Service with id = {id} deleted from db");
+            _logger.LogInformation($"Service with id = {id} DELETED from db");
         }
 
         public async Task<List<Service>> ShowServices()
